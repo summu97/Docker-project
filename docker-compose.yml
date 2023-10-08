@@ -1,28 +1,28 @@
 version: '3'
 services:
   movies:
-    image: summu97/projectmovies:v1
+    image: summu97/paytmmovies:v1
     ports:
       - "81:80"
     deploy:
       replicas: 3
 
   train:
-    image: summu97/projecttrain:v1
+    image: summu97/paytmtrain:v1
     ports:
       - "82:80"
     deploy:
       replicas: 3
 
   dth:
-    image: summu97/projectdth:v1
+    image: summu97/paytmdth:v1
     ports:
       - "83:80"
     deploy:
       replicas: 3
 
   recharge:
-    image: summu97/projectrecharge:v1
+    image: summu97/paytmrecharge:v1
     ports:
       - "84:80"
     deploy:
