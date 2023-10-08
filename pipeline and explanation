@@ -57,11 +57,17 @@ value:
  summu97/paytmrecharge:v1
  summu97/paytmdth:v1
 ---------------------------------------
+=======================================
+
 NOTE:
 make sure to change the code in your GitHub "index.html"
-line no '53'
+line no '138'change the message 
+when you are building and pushing  with parameter movies "change the name to movies"
+when buliding  and pushing with train "change name to train"
+so no... for remaining services.
 
------------------------------------------
+=======================================
+---------------------------------------
 
 PIPELINE-2
 
