@@ -1,0 +1,98 @@
+PIPELINE-1
+STAGE-1: integrating GitHub.
+STAGE-2: biliding images from Dockerfile.
+STAGE-3: dockerHub login.
+STAGE-4: tagging created images to dockerHub repo's.
+STAGE-5: pushing images to dockerHub repo's.
+---------------------------------------
+pipeline{
+    agent any
+    
+    stages{
+        stage('checkout'){
+            steps{
+                git 'https://github.com/summu97/Docker-project.git'
+            }
+        }
+        stage('build'){
+            steps{
+                sh 'docker build -t $img .'
+            }
+        }
+        stage('login'){
+            steps{
+                sh 'docker login -u summu97 -p $password'
+            }
+        }
+        stage('tag'){
+            steps{
+                sh 'docker tag $img $repo'
+            }
+        }
+        stage('push'){
+            steps{
+                sh 'docker push $repo'
+            }
+        }
+    }
+}
+-----------------------------------------
+# FOR $password
+
+dashboard->manage jenkins->system->global properties->environment variables-> name: password, value: Sumanth@97
+
+# FOR $img
+
+this project is parameterized->add parameter->choice parameter->add-> name:img, value: movies:v1 
+                                                                                       train:v1
+                                                                                       recharge:v1
+                                                                                       dth:v1
+# FOR $repo
+
+this project is parameterized->add parameter->choice parameter->add-> 
+name: repo 
+value:
+ summu97/paytmmovies:v1
+ summu97/paytmtrain:v1
+ summu97/paytmrecharge:v1
+ summu97/paytmdth:v1
+---------------------------------------
+NOTE:
+make sure to change the code in your GitHub "index.html"
+line no '53'
+
+-----------------------------------------
+
+PIPELINE-2
+
+STAGE-1: integrating with GitHub.
+STAGE-2: deploying the containers.
+
+NOTE: # Here you have to write docker-compose.yml file carefully.
+      # Be careful while giving images.
+-----------------------------------------
+
+
+pipeline{
+    agent any
+    
+    stages{
+        stage('checkout'){
+            steps{
+                git 'https://github.com/summu97/Docker-project.git'
+            }
+        }
+        stage('deploy'){
+            steps{
+                sh 'docker stack deploy -c docker-compose.yml paytm'
+            }
+        }
+    }
+}
+------------------------------------------------------------------
+
+
+
+
+
+
