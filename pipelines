@@ -1,0 +1,63 @@
+PIPELINE-1
+---------------------------------------
+pipeline{
+    agent any
+    
+    stages{
+        stage('checkout'){
+            steps{
+                git 'https://github.com/summu97/Docker-project.git'
+            }
+        }
+        stage('build'){
+            steps{
+                sh 'docker build -t $img .'
+            }
+        }
+        stage('login'){
+            steps{
+                sh 'docker login -u summu97 -p $password'
+            }
+        }
+        stage('tag'){
+            steps{
+                sh 'docker tag $img $repo'
+            }
+        }
+        stage('push'){
+            steps{
+                sh 'docker push $repo'
+            }
+        }
+    }
+}
+-----------------------------------------
+
+
+PIPELINE-2
+-----------------------------------------
+
+
+pipeline{
+    agent any
+    
+    stages{
+        stage('checkout'){
+            steps{
+                git 'https://github.com/summu97/Docker-project.git'
+            }
+        }
+        stage('deploy'){
+            steps{
+                sh 'docker stack deploy -c docker-compose.yml paytm'
+            }
+        }
+    }
+}
+------------------------------------------------------------------
+
+
+
+
+
+
