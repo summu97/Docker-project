@@ -1,15 +1,20 @@
 # CREATING SERVERS:
+
 master node,node-1,node-2
 for master node: t2.medium
 for worker nodes: t2.micro
 ------------------------------
+
 #CONNECT THEM TO TERMINAL AND IN MULTI EXEC MODE:
+
 ------------------------------
+
 #INSATLL DOCKER:
 
 cmnd: yum install docker -y
 cmnd: systemctl start docker
 cmnd: systemctl status docker
+
 ---------------------------
 # SWARM CONNECTION:
 
@@ -17,22 +22,31 @@ In master node run:
 cmnd: docker swarm init
 # You will get a token copy it "docker swarm-----------2377" and run in all the worker nodes.
 # After running in nodes you will see "This node joined the swarm as a worker".
+
 ---------------------------
-# In master node run:
+
+# IN MASTER NODE RUN:
+
 cmnd: docker node ls
 #To check no of nodes connected.
+
 ---------------------------
+
 # INSTALLING JENKINS IN MASTER NODE:
+
 cmnd: vim jenkins.sh
 copy code from all-setups "jenkins.sh"
 cmnd: sh jenkins.sh
 and connect to jenkins server.
+
 -----------------------------
-NOTE: here you are integrating jenkins and docker, so permission is required.
+
+NOTE: here you are INTEGRATING JENKINS AND DOCKER, so PERMISSION is required.
 
 cmnd: chmod 777 /var/run/docker.sock
 cmnd: systemctl daemon-reload
 cmnd: systemctl restart docker.service
+
 -----------------------------
 
 
